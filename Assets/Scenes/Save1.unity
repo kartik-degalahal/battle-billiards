@@ -1171,6 +1171,8 @@ GameObject:
   - component: {fileID: 1129762949}
   - component: {fileID: 1129762950}
   - component: {fileID: 1129762951}
+  - component: {fileID: 1129762953}
+  - component: {fileID: 1129762952}
   m_Layer: 0
   m_Name: RedBall
   m_TagString: Player
@@ -1397,6 +1399,7 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   ballOwner: 0
+  isAttacking: 0
 --- !u!50 &1129762945
 Rigidbody2D:
   serializedVersion: 5
@@ -1657,6 +1660,72 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BallHealth
   maxHealth: 100
   healthFill: {fileID: 1664209045}
+--- !u!114 &1129762952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129762941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6dc9fb0e939a4413a5eb4f9c463b954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerActivatorScript
+  currentState: 0
+  hasPower: 0
+  allotPower: 0
+  movementScript: {fileID: 1129762944}
+  power1: {fileID: 1129762953}
+--- !u!114 &1129762953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129762941}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218c1a4cb8e504595b8d29d196c7445b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mortar
+  activator: {fileID: 1129762952}
+  targetPrefab: {fileID: 1813143397866779240, guid: df0244c495af64c96838374ba0290d84, type: 3}
+  bomb: {fileID: 3655206976264510843, guid: c192c162d9e7b475abf108bf52992174, type: 3}
+  distanceMultiplier: 1
+  dragLimit: 3
+  ballOwner: 0
+  isAttacking: 0
+  powerGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!1 &1349055808
 GameObject:
   m_ObjectHideFlags: 0
@@ -2319,6 +2388,7 @@ GameObject:
   - component: {fileID: 2074659499}
   - component: {fileID: 2074659500}
   - component: {fileID: 2074659501}
+  - component: {fileID: 2074659502}
   m_Layer: 0
   m_Name: BlueBall
   m_TagString: Player
@@ -2628,6 +2698,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   ballOwner: 1
+  isAttacking: 0
 --- !u!120 &2074659500
 LineRenderer:
   serializedVersion: 3
@@ -2780,6 +2851,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BallHealth
   maxHealth: 100
   healthFill: {fileID: 495271543}
+--- !u!114 &2074659502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074659493}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218c1a4cb8e504595b8d29d196c7445b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mortar
+  activator: {fileID: 0}
+  targetPrefab: {fileID: 0}
+  bomb: {fileID: 3655206976264510843, guid: c192c162d9e7b475abf108bf52992174, type: 3}
+  distanceMultiplier: 1
+  dragLimit: 3
+  ballOwner: 0
+  isAttacking: 0
+  powerGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!1 &2082395654
 GameObject:
   m_ObjectHideFlags: 0
@@ -3084,63 +3204,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundScript
   audioPlayer: {fileID: 599407512}
---- !u!1001 &3268444514825690601
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7357887076001502064, guid: f06fedb9a653e471dbd661f79b101f0f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.77
-      objectReference: {fileID: 0}
-    - target: {fileID: 7357887076001502064, guid: f06fedb9a653e471dbd661f79b101f0f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 7357887076001502064, guid: f06fedb9a653e471dbd661f79b101f0f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7357887076001502064, guid: f06fedb9a653e471dbd661f79b101f0f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7357887076001502064, guid: f06fedb9a653e471dbd661f79b101f0f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7357887076001502064, guid: f06fedb9a653e471dbd661f79b101f0f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7357887076001502064, guid: f06fedb9a653e471dbd661f79b101f0f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7357887076001502064, guid: f06fedb9a653e471dbd661f79b101f0f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7357887076001502064, guid: f06fedb9a653e471dbd661f79b101f0f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7357887076001502064, guid: f06fedb9a653e471dbd661f79b101f0f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061572796552311041, guid: f06fedb9a653e471dbd661f79b101f0f, type: 3}
-      propertyPath: m_Name
-      value: Coin
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f06fedb9a653e471dbd661f79b101f0f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3152,5 +3215,4 @@ SceneRoots:
   - {fileID: 811661268}
   - {fileID: 228969598}
   - {fileID: 1092881834}
-  - {fileID: 3268444514825690601}
   - {fileID: 1028154929}

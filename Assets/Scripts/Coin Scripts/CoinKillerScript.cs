@@ -12,8 +12,13 @@ public class CoinKillerScript : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other){
     
         if(other.CompareTag("Player")){
-            Debug.Log("Coin died");
-            Destroy(gameObject);
+            //check if player already has a power. If not, destroy this object and give him a power
+            PowerActivatorScript player = other.GetComponent<PowerActivatorScript>();
+            if(!player.hasPower){
+                Debug.Log("Coin died");
+                player.allotPower = true;
+                Destroy(gameObject);
+            }
     }
     }
 }
