@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3655206976264510843
+--- !u!1 &8592239773441776956
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 346451620854506948}
-  - component: {fileID: 2133400415096158162}
-  - component: {fileID: 8300766772304948627}
-  - component: {fileID: 4289561942508831153}
+  - component: {fileID: 6355370585618673113}
+  - component: {fileID: 199516869762350544}
+  - component: {fileID: 8854773284587206979}
+  - component: {fileID: -8212436419635210132}
   m_Layer: 0
-  m_Name: Bomb
+  m_Name: ExplosionEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &346451620854506948
+--- !u!4 &6355370585618673113
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3655206976264510843}
+  m_GameObject: {fileID: 8592239773441776956}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02834, y: -0.14544, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2133400415096158162
+--- !u!212 &199516869762350544
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3655206976264510843}
+  m_GameObject: {fileID: 8592239773441776956}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -83,50 +83,48 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 1f4a0aae86ebe3a4abe7d92019f422cb, type: 3}
+  m_Sprite: {fileID: -6198271706115014658, guid: f3acb89d020a64f749af77e169dfd03f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.64, y: 1.83}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &8300766772304948627
+--- !u!95 &8854773284587206979
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8592239773441776956}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 799a86e59533f4d308124aa4dfddb29d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-8212436419635210132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3655206976264510843}
+  m_GameObject: {fileID: 8592239773441776956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 573fc73e0bc924b959005ba61fb19374, type: 3}
+  m_Script: {fileID: 11500000, guid: cbfd357b519bf438ca56dd766c286c70, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bomb
-  explosionPrefab: {fileID: 8592239773441776956, guid: e23b9418361154174886a531ea033a91, type: 3}
-  armingVolume: 1
-  explosionVolume: 1
-  armingClip: {fileID: 8300000, guid: 419336aa8912ae0468e104596863a0a1, type: 3}
-  explosionClip: {fileID: 8300000, guid: f01c623f724825e44a923d1ae50256f2, type: 3}
-  blastRadius: 2
-  maxDamage: 5
-  knockBackScaling: 10
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  turnsRemaining: 4
---- !u!114 &4289561942508831153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3655206976264510843}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 664740e3a95994107bfa05130f4eb81e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SoundScript
-  audioPlayer: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::explosionDeleter
+  delay: 1

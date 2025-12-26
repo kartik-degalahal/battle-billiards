@@ -22,6 +22,8 @@ public class Mortar : MonoBehaviour
     private bool isDragging = false;
     public bool isAttacking = false;
 
+    //public AudioSource throwAudio;
+
     //for gradient of the dragline
     public Gradient powerGradient;
 
@@ -122,15 +124,19 @@ public class Mortar : MonoBehaviour
                 //  Lock the player from shooting again until the turn switches
                 hasShotThisTurn = true;
 
-                line.enabled = false; //remove the line
+                line.enabled = false; //remove the line]
+
+                //throwAudio.play(); //to play throwing audio (will prolly add after throw animation)
+
                 Instantiate(bomb,target.transform.position, Quaternion.identity ); //add bomb object
 
                 Destroy(target);//remove target object
-
+                /*
                 if (TurnManager.Instance != null)
                 {
                     TurnManager.Instance.NotifyShotFired();
                 }
+                */
                 activator.hasPower = false;
                 activator.ToggleControl();
             }
