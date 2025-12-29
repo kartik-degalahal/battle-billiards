@@ -94,6 +94,7 @@ public class BallLauncher : MonoBehaviour
                 if (count == 2)
                 {
                     GetComponent<BallHealth>().isinvincible = false;
+                    GetComponent<PowerActivatorScript>().hasPower = false;
                     count = 0;
                 }
             }
