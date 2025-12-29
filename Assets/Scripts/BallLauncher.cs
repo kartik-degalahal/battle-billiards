@@ -26,7 +26,7 @@ public class BallLauncher : MonoBehaviour
     void FixedUpdate()
     {
         // Check if the ball is moving very slowly
-        if (rb.linearVelocity.magnitude < 0.1f)
+        if (rb.linearVelocity.magnitude < 0.5f)
         {
             // Force it to a complete stop
             rb.linearVelocity = Vector2.zero;
@@ -82,6 +82,7 @@ public class BallLauncher : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && isDragging)
         {
             isDragging = false;
+           
 
             //  Lock the player from shooting again until the turn switches
             hasShotThisTurn = true;

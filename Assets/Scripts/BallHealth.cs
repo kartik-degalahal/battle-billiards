@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +6,9 @@ public class BallHealth : MonoBehaviour
 {
     public float maxHealth = 100f;
     private float currentHealth;
+    public TextMeshProUGUI winMessageText;
+    public GameObject game_End;
+
 
     // Drag the "Fill" image (the green one) into this slot in the Inspector
     public Image healthFill;
@@ -58,8 +62,15 @@ public class BallHealth : MonoBehaviour
 
     void Die()
     {
+        string winner = (gameObject.name == "RedBall") ? "BLUE PLAYER" : "RED PLAYER";
+        if (winMessageText != null)
+        {
+            winMessageText.text = winner + " WINS!";
+            game_End.SetActive(true);
+        }
         Debug.Log(gameObject.name + " destroyed!");
-        gameObject.SetActive(false);
-        // You can add an explosion effect here later!
+        Destroy(gameObject);
+        Time.timeScale = 0;
+        
     }
 }
