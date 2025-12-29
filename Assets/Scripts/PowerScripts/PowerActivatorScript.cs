@@ -12,7 +12,7 @@ public class PowerActivatorScript : MonoBehaviour
 
     //all the powers that we can activate
     public MonoBehaviour movementScript;
-    public MonoBehaviour power1;
+    public Mortar power1;
 
 
     void Start()
@@ -58,7 +58,8 @@ public class PowerActivatorScript : MonoBehaviour
             // Switch back to Movement mode
             currentState = ControlState.Movement;
             movementScript.enabled = true;  // Start movement
-            power1.enabled = false;         // Stop power
+            power1.enabled = false;         // Stop 
+            power1.Disabler();
             Debug.Log("Switched to MOVEMENT mode");
         }
     }

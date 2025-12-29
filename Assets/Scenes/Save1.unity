@@ -1338,7 +1338,6 @@ GameObject:
   - component: {fileID: 1129762942}
   - component: {fileID: 1129762948}
   - component: {fileID: 1129762949}
-  - component: {fileID: 1129762950}
   - component: {fileID: 1129762951}
   - component: {fileID: 1129762953}
   - component: {fileID: 1129762952}
@@ -1803,18 +1802,6 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
---- !u!114 &1129762950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1129762941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c37e9d2ed06b460ab4ee8bdadb5ec38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CoinScript
 --- !u!114 &1129762951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3468,12 +3455,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 218c1a4cb8e504595b8d29d196c7445b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mortar
-  activator: {fileID: 0}
-  targetPrefab: {fileID: 0}
+  activator: {fileID: 2074659503}
+  targetPrefab: {fileID: 1813143397866779240, guid: df0244c495af64c96838374ba0290d84, type: 3}
   bomb: {fileID: 3655206976264510843, guid: c192c162d9e7b475abf108bf52992174, type: 3}
   distanceMultiplier: 1
   dragLimit: 3
-  ballOwner: 0
+  ballOwner: 1
   isAttacking: 0
   powerGradient:
     serializedVersion: 2
@@ -3521,7 +3508,7 @@ MonoBehaviour:
   hasPower: 0
   allotPower: 0
   movementScript: {fileID: 2074659499}
-  power1: {fileID: 0}
+  power1: {fileID: 2074659502}
 --- !u!1 &2082395654
 GameObject:
   m_ObjectHideFlags: 0

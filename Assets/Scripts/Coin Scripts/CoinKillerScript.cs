@@ -15,7 +15,7 @@ public class CoinKillerScript : MonoBehaviour
             //check if player already has a power. If not, destroy this object and give him a power
             PowerActivatorScript player = other.GetComponent<PowerActivatorScript>();
             if(!player.hasPower){
-                Debug.Log("Coin died");
+                Debug.Log("Coin died, And Power Acquired");
                 player.allotPower = true;
                 Destroy(gameObject);
             }
