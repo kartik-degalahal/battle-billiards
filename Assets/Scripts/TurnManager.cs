@@ -10,7 +10,7 @@ public class TurnManager : MonoBehaviour
     public Player currentPlayer = Player.Player1;
     public GameObject player1Object; // Assign RedBall here in Inspector
     public GameObject player2Object; // Assign BlueBall here in Inspector
-    private GameObject currentplayerobj;
+    private GameObject prevplayerobj;
 
     private bool hasShotBeenFired = false; 
 
@@ -54,10 +54,11 @@ public class TurnManager : MonoBehaviour
         currentPlayer = (currentPlayer == Player.Player1) ? Player.Player2 : Player.Player1;
         if (currentPlayer == Player.Player2)
         {
-            currentplayerobj = player2Object;
+            prevplayerobj = player1Object;
         }
-        else { currentplayerobj = player1Object; }
-        currentplayerobj.GetComponent<BallLauncher>().isAttacking=false;
+        else { prevplayerobj = player2Object; }
+
+        prevplayerobj.GetComponent<BallLauncher>().isAttacking=false;
         UpdateUI();
     }
 

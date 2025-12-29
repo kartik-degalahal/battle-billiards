@@ -8,7 +8,7 @@ public class BallHealth : MonoBehaviour
     private float currentHealth;
     public TextMeshProUGUI winMessageText;
     public GameObject game_End;
-
+    public TextMeshProUGUI turnText;
 
     // Drag the "Fill" image (the green one) into this slot in the Inspector
     public Image healthFill;
@@ -70,6 +70,7 @@ public class BallHealth : MonoBehaviour
         }
         Debug.Log(gameObject.name + " destroyed!");
         Destroy(gameObject);
+        turnText.text = "";
         Time.timeScale = 0;
         
     }

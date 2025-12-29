@@ -82,6 +82,7 @@ public class BallLauncher : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && isDragging)
         {
             isDragging = false;
+            
            
 
             //  Lock the player from shooting again until the turn switches
