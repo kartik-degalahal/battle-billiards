@@ -9,6 +9,7 @@ public class BallHealth : MonoBehaviour
     public TextMeshProUGUI winMessageText;
     public GameObject game_End;
     public TextMeshProUGUI turnText;
+    public bool isinvincible;
 
     // Drag the "Fill" image (the green one) into this slot in the Inspector
     public Image healthFill;
@@ -45,6 +46,7 @@ public class BallHealth : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        if (isinvincible) { return; }
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 

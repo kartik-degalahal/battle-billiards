@@ -12,6 +12,7 @@ public class BallLauncher : MonoBehaviour
     public Player ballOwner;
     private bool isDragging = false;
     public bool isAttacking = false;
+    private int count = 0;
 
     //  Flag to prevent multiple shots in one turn 
     private bool hasShotThisTurn = false;
@@ -87,6 +88,15 @@ public class BallLauncher : MonoBehaviour
 
             //  Lock the player from shooting again until the turn switches
             hasShotThisTurn = true;
+            if (GetComponent<BallHealth>().isinvincible == true)
+            {
+                count++;
+                if (count == 2)
+                {
+                    GetComponent<BallHealth>().isinvincible = false;
+                    count = 0;
+                }
+            }
 
             line.enabled = false;
 

@@ -11,6 +11,7 @@ public class TurnManager : MonoBehaviour
     public GameObject player1Object; // Assign RedBall here in Inspector
     public GameObject player2Object; // Assign BlueBall here in Inspector
     private GameObject prevplayerobj;
+    public int GameTurns=0;
 
     private bool hasShotBeenFired = false; 
 
@@ -35,7 +36,7 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    bool AreBallsStopped()
+    public bool AreBallsStopped()
     {
         Rigidbody2D[] allBalls = FindObjectsOfType<Rigidbody2D>();
         foreach (Rigidbody2D rb in allBalls)
@@ -59,6 +60,7 @@ public class TurnManager : MonoBehaviour
         else { prevplayerobj = player2Object; }
 
         prevplayerobj.GetComponent<BallLauncher>().isAttacking=false;
+        GameTurns++;
         UpdateUI();
     }
 

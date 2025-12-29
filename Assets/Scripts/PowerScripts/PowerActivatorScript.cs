@@ -13,7 +13,7 @@ public class PowerActivatorScript : MonoBehaviour
     //all the powers that we can activate
     public MonoBehaviour movementScript;
     public Mortar power1;
-
+    public int powerID = 0;
 
     void Start()
     {
@@ -50,7 +50,19 @@ public class PowerActivatorScript : MonoBehaviour
             // Switch to Power mode
             currentState = ControlState.Power;
             movementScript.enabled = false; // Stop movement
-            power1.enabled = true;          // Start power
+            switch (powerID)
+            {
+                case 1:
+                    power1.enabled = true;
+                    Debug.Log("Explosive Acquired");// Start power1
+                    break;
+                case 2:
+                    BallHealth health = GetComponent<BallHealth>();
+                    health.isinvincible= true;
+                    Debug.Log("Invincibility Acquired");
+                    break;
+            }
+            
             Debug.Log("Switched to POWER mode");
         }
         else
@@ -58,8 +70,9 @@ public class PowerActivatorScript : MonoBehaviour
             // Switch back to Movement mode
             currentState = ControlState.Movement;
             movementScript.enabled = true;  // Start movement
-            power1.enabled = false;         // Stop 
+            power1.enabled = false;         // Stop power1
             power1.Disabler();
+
             Debug.Log("Switched to MOVEMENT mode");
         }
     }
