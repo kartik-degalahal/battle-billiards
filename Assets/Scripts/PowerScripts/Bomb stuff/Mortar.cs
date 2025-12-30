@@ -145,8 +145,8 @@ public class Mortar : MonoBehaviour
                     TurnManager.Instance.NotifyShotFired();
                 }
                 */
-                activator.hasPower = false;
-                activator.ToggleControl();
+                //remove power UI
+                GetComponent<PowerActivatorScript>().ResetPower();
             }
         }
     }
