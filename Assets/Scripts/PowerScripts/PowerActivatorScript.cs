@@ -89,6 +89,7 @@ public class PowerActivatorScript : MonoBehaviour
                     BallHealth health = GetComponent<BallHealth>();
                     health.isinvincible= true;
                     Debug.Log("Invincibility Acquired");
+                    highlight.SetActive(true);
                     //powerIconDisplay.sprite = spritePower2;
                     ToggleControl();
                     break;
@@ -103,7 +104,8 @@ public class PowerActivatorScript : MonoBehaviour
             movementScript.enabled = true;  // Start movement
             power1.enabled = false;         // Stop power1
             power1.Disabler();
-            
+            if (highlight != null) highlight.SetActive(false);
+
             Debug.Log("Switched to MOVEMENT mode");
         }
 
