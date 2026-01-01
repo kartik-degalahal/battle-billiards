@@ -83,7 +83,10 @@ public class BallLauncher : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && isDragging)
         {
             isDragging = false;
-            
+            if (GetComponent<PowerActivatorScript>().currentState == PowerActivatorScript.ControlState.Power)
+            {
+                GetComponent<PowerActivatorScript>().ToggleControl();
+            }
            
 
             //  Lock the player from shooting again until the turn switches
@@ -96,9 +99,10 @@ public class BallLauncher : MonoBehaviour
                     GetComponent<BallHealth>().isinvincible = false;
                     GetComponent<PowerActivatorScript>().hasPower = false;
                     count = 0;
+
                 }
             }
-
+            
             line.enabled = false;
 
             Vector3 lineVector = line.GetPosition(1) - line.GetPosition(0);

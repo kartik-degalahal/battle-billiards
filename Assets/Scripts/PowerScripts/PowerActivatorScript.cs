@@ -19,6 +19,7 @@ public class PowerActivatorScript : MonoBehaviour
     public bool hasPower; //to check if the person has a power or not
     public bool allotPower; //becomes true only when there is a pending power to be alloted
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
 
     //all the powers that we can activate
     public MonoBehaviour movementScript;
@@ -38,18 +39,20 @@ public class PowerActivatorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //check if we have a coin
-        //when we have a coin, dont collide with coins --> done in CoinKillerScript
-        //if we collide with a coin, "pick it up" --> done in CoinKillerScript
+        // 1. Get the BallLauncher component from your movementScript reference
+        BallLauncher launcher = (BallLauncher)movementScript;
 
-        //to toggle between power and movement
-        if (Input.GetKeyDown(KeyCode.F) && hasPower) // i think if you add the check here it should work <--------
+        // 2. ONLY proceed if this script belongs to the player whose turn it is
+        if (TurnManager.Instance != null && TurnManager.Instance.currentPlayer == launcher.ballOwner)
         {
-            ToggleControl();
+            // 3. Now check for the key press and the isAttacking variable
+            if (Input.GetKeyDown(KeyCode.F) && hasPower && !launcher.isAttacking)
+            {
+                ToggleControl();
+            }
         }
-        //if power is used, hasPower == false
 
-        if(hasPower){
+        if (hasPower){
             uiPanel.SetActive(true);
             switch(powerID){
                 case 1:
@@ -59,6 +62,12 @@ public class PowerActivatorScript : MonoBehaviour
                     powerIconDisplay.sprite = spritePower2;
                     break;
             }
+        }
+        else
+        {
+            if (uiPanel != null) uiPanel.SetActive(false);
+            if (highlight != null) highlight.SetActive(false);
+
         }
     }
     public void ToggleControl()
@@ -81,6 +90,7 @@ public class PowerActivatorScript : MonoBehaviour
                     health.isinvincible= true;
                     Debug.Log("Invincibility Acquired");
                     //powerIconDisplay.sprite = spritePower2;
+                    ToggleControl();
                     break;
             }
             
@@ -93,7 +103,7 @@ public class PowerActivatorScript : MonoBehaviour
             movementScript.enabled = true;  // Start movement
             power1.enabled = false;         // Stop power1
             power1.Disabler();
-            highlight.SetActive(false); // remove highlight on power UI
+            
             Debug.Log("Switched to MOVEMENT mode");
         }
 

@@ -6,19 +6,14 @@ public class CoinSpawnerScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        spawnCoin();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E)){
-            Debug.Log("Key was pressed!! spawning coin");
-            spawnCoin();
-        }
-    }
+   
 
-    private void spawnCoin(){
+    
+    public void spawnCoin(){
         bool coinSpawned = false;
         int attempts = 0;
         while(!coinSpawned & attempts<100){

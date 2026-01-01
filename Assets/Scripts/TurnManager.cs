@@ -11,7 +11,7 @@ public class TurnManager : MonoBehaviour
     public GameObject player1Object; // Assign RedBall here in Inspector
     public GameObject player2Object; // Assign BlueBall here in Inspector
     private GameObject prevplayerobj;
-    public int GameTurns=0;
+    public GameObject coinspawner;
 
     private bool hasShotBeenFired = false; 
 
@@ -60,7 +60,7 @@ public class TurnManager : MonoBehaviour
         else { prevplayerobj = player2Object; }
 
         prevplayerobj.GetComponent<BallLauncher>().isAttacking=false;
-        GameTurns++;
+        coinspawner.GetComponent<CoinSpawnerScript>().spawnCoin();
         UpdateUI();
     }
 
