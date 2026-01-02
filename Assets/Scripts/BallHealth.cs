@@ -35,7 +35,7 @@ public class BallHealth : MonoBehaviour
 
             if (impactForce > 1.5f)
             {
-                TakeDamage(impactForce * 1.75f);
+                TakeDamage(impactForce * 2f);
 
                 // 3. Reset the attacker so it doesn't do "double damage" 
                 // if it bounces and hits the same ball twice in one frame
