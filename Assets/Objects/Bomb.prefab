@@ -111,7 +111,7 @@ MonoBehaviour:
   armingClip: {fileID: 8300000, guid: 419336aa8912ae0468e104596863a0a1, type: 3}
   explosionClip: {fileID: 8300000, guid: f01c623f724825e44a923d1ae50256f2, type: 3}
   blastRadius: 2
-  maxDamage: 15
+  maxDamage: 50
   knockBackScaling: 10
   playerLayer:
     serializedVersion: 2
