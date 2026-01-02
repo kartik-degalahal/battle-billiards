@@ -12,35 +12,43 @@ public class PowerActivatorScript : MonoBehaviour
     public Sprite spritePower1;     // Drag your Mortar sprite here
     public Sprite spritePower2;     // Drag your Invincibility sprite here
 
-    //to help swap
+    // to help swap
     public enum ControlState { Movement, Power };
     public ControlState currentState = ControlState.Movement;
 
-    public bool hasPower; //to check if the person has a power or not
-    public bool allotPower; //becomes true only when there is a pending power to be alloted
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
+    public bool hasPower; // to check if the person has a power or not
+    public bool allotPower; // becomes true only when there is a pending power to be alloted
 
-    //all the powers that we can activate
+    // all the powers that we can activate
     public MonoBehaviour movementScript;
     public Mortar power1;
     public int powerID = 0;
+
+    // Cache variables to improve performance
+    private BallLauncher launcher;
+    private BallHealth ballHealth;
 
     void Start()
     {
         hasPower = false;
         allotPower = false;
 
-        //to ensure that the UI is hidden at start
-        if(uiPanel != null) uiPanel.SetActive(false); 
-        if(highlight != null) highlight.SetActive(false);
+        // Cache the BallLauncher and Health once at start to avoid lag in Update
+        if (movementScript != null)
+            launcher = movementScript as BallLauncher;
+
+        ballHealth = GetComponent<BallHealth>();
+
+        // to ensure that the UI is hidden at start
+        if (uiPanel != null) uiPanel.SetActive(false);
+        if (highlight != null) highlight.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 1. Get the BallLauncher component from your movementScript reference
-        BallLauncher launcher = (BallLauncher)movementScript;
+        // Safety check: if launcher failed to load, don't run logic
+        if (launcher == null) return;
 
         // 2. ONLY proceed if this script belongs to the player whose turn it is
         if (TurnManager.Instance != null && TurnManager.Instance.currentPlayer == launcher.ballOwner)
@@ -52,96 +60,108 @@ public class PowerActivatorScript : MonoBehaviour
             }
         }
 
-        if (hasPower){
-            uiPanel.SetActive(true);
-            switch(powerID){
-                case 1:
-                    powerIconDisplay.sprite = spritePower1;
-                    break;
-                case 2:
-                    powerIconDisplay.sprite = spritePower2;
-                    break;
+        // UI Logic
+        if (hasPower)
+        {
+            if (uiPanel != null) uiPanel.SetActive(true);
+
+            if (powerIconDisplay != null)
+            {
+                switch (powerID)
+                {
+                    case 1:
+                        powerIconDisplay.sprite = spritePower1;
+                        break;
+                    case 2:
+                        powerIconDisplay.sprite = spritePower2;
+                        break;
+                }
             }
         }
         else
         {
             if (uiPanel != null) uiPanel.SetActive(false);
             if (highlight != null) highlight.SetActive(false);
-
         }
     }
+
     public void ToggleControl()
     {
         if (currentState == ControlState.Movement)
         {
             // Switch to Power mode
             currentState = ControlState.Power;
-            movementScript.enabled = false; // Stop movement
-            highlight.SetActive(true); //highlight power UI
+            if (movementScript != null) movementScript.enabled = false; // Stop movement
+            if (highlight != null) highlight.SetActive(true); // highlight power UI
+
             switch (powerID)
             {
                 case 1:
-                    power1.enabled = true;
-                    Debug.Log("Explosive Acquired");// Start power1
-                    //powerIconDisplay.sprite = spritePower1;
+                    if (power1 != null) power1.enabled = true;
+                    Debug.Log("Explosive Acquired");
                     break;
                 case 2:
-                    BallHealth health = GetComponent<BallHealth>();
-                    health.isinvincible= true;
+                    if (ballHealth != null) ballHealth.isinvincible = true;
+
                     Debug.Log("Invincibility Acquired");
-                    highlight.SetActive(true);
-                    //powerIconDisplay.sprite = spritePower2;
+                    if (highlight != null) highlight.SetActive(true);
+
+                    // Immediately toggle back (Preserving your original logic)
                     ToggleControl();
                     break;
             }
-            
+
             Debug.Log("Switched to POWER mode");
         }
         else
         {
             // Switch back to Movement mode
             currentState = ControlState.Movement;
-            movementScript.enabled = true;  // Start movement
-            power1.enabled = false;         // Stop power1
-            power1.Disabler();
+            if (movementScript != null) movementScript.enabled = true;  // Start movement
+
+            if (power1 != null)
+            {
+                power1.enabled = false;         // Stop power1
+                power1.Disabler();
+            }
+
             if (highlight != null) highlight.SetActive(false);
 
             Debug.Log("Switched to MOVEMENT mode");
         }
-
     }
 
-public void ResetPower()
-{
-    // --- ADD THIS: Stop physics momentum ---
-    Rigidbody2D rb = GetComponent<Rigidbody2D>();
-    if (rb != null)
+    public void ResetPower()
     {
-        rb.linearVelocity = Vector2.zero; // Resets speed to zero
-        rb.angularVelocity = 0f;          // Stops any spinning
+        // Stop physics momentum
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            // NOTE: linearVelocity is for Unity 6000+. Use rb.velocity for older versions.
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
+
+        // Reset Logic
+        hasPower = false;
+        allotPower = false;
+        powerID = 0;
+
+        // Reset State to Movement
+        currentState = ControlState.Movement;
+        if (movementScript != null) movementScript.enabled = true;
+
+        // Ensure power scripts are actually off
+        if (power1 != null)
+        {
+            power1.enabled = false;
+            power1.Disabler();
+        }
+
+        // Reset UI
+        if (uiPanel != null) uiPanel.SetActive(false);
+        if (highlight != null) highlight.SetActive(false);
+
+        Debug.Log("Power used: Physics cleared and UI hidden.");
     }
-
-    // Reset Logic
-    hasPower = false;
-    allotPower = false;
-    powerID = 0; 
-    
-    // Reset State to Movement
-    currentState = ControlState.Movement;
-    movementScript.enabled = true;
-
-    // --- ADD THIS: Ensure power scripts are actually off ---
-    if (power1 != null) 
-    {
-        power1.enabled = false;
-        power1.Disabler(); // Call your cleanup method
-    }
-
-    // Reset UI
-    if (uiPanel != null) uiPanel.SetActive(false);
-    if (highlight != null) highlight.SetActive(false);
-    
-    Debug.Log("Power used: Physics cleared and UI hidden.");
-}
-    
 }
